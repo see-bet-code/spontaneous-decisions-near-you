@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_142717) do
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
   end
 
   create_table "risk_levels", force: :cascade do |t|
