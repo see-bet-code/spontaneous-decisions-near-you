@@ -4,4 +4,4 @@ class Plan < ActiveRecord::Base
     has_many :reviews
 end
 
-#Test
+#Test 2
