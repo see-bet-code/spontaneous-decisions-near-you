@@ -3,3 +3,5 @@ class Plan < ActiveRecord::Base
     belongs_to :risk_level
     has_many :reviews
 end
+
+#Test
