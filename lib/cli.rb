@@ -44,7 +44,7 @@ prompt.select("What is your risk level?", risk_level)
 
 
 
-  
+
 # class Welcome
 #     def run
 #         greeting
