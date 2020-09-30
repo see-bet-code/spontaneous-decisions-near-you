@@ -1,3 +1,6 @@
+require 'rest-client'
+require 'rainbow'
+
 class Welcome
     
     def run
