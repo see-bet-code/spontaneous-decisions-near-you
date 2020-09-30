@@ -4,7 +4,7 @@ Bundler.require
 require 'active_record'
 require 'rake'
 require_all 'app/models'
-require_all 'lib'
+require './lib/yelp_api_adapter'
 
 ENV["PLAYLISTER_ENV"] ||= "development"
 

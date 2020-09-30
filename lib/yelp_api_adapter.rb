@@ -44,7 +44,7 @@ class YelpAPIAdapter
     #        }
     #
     # Returns a parsed json object of the request
-    def search(term, location)
+    def self.search(term, location)
     url = "#{API_HOST}#{SEARCH_PATH}"
     params = {
         term: term,
@@ -56,6 +56,11 @@ class YelpAPIAdapter
     response.parse
     end
 
+    def self.business_reviews(business_id)
+        url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}/reviews"
+        response = HTTP.auth("Bearer #{API_KEY}").get(url)
+        response.parse["reviews"]
+    end
 
     # Look up a business by a given business id. Full documentation is online at:
     # https://www.yelp.com/developers/documentation/v3/business
@@ -100,35 +105,35 @@ class YelpAPIAdapter
         puts opts
         exit
     end
-end.parse!
+
+    command = ARGV
 
 
-command = ARGV
+    case command.first
+        when "search"
+            term = options.fetch(:term, DEFAULT_TERM)
+            location = options.fetch(:location, DEFAULT_LOCATION)
+
+            raise "business_id is not a valid parameter for searching" if options.key?(:business_id)
+
+            response = search(term, location)
+
+            puts "Found #{response["total"]} businesses. Listing #{SEARCH_LIMIT}:"
+            response["businesses"].each {|biz| puts biz["name"]}
+        when "lookup"
+            business_id = options.fetch(:business_id, DEFAULT_BUSINESS_ID)
 
 
-case command.first
-    when "search"
-        term = options.fetch(:term, DEFAULT_TERM)
-        location = options.fetch(:location, DEFAULT_LOCATION)
+            raise "term is not a valid parameter for lookup" if options.key?(:term)
+            raise "location is not a valid parameter for lookup" if options.key?(:lookup)
 
-        raise "business_id is not a valid parameter for searching" if options.key?(:business_id)
+            response = business(business_id)
 
-        response = search(term, location)
-
-        puts "Found #{response["total"]} businesses. Listing #{SEARCH_LIMIT}:"
-        response["businesses"].each {|biz| puts biz["name"]}
-    when "lookup"
-        business_id = options.fetch(:business_id, DEFAULT_BUSINESS_ID)
-
-
-        raise "term is not a valid parameter for lookup" if options.key?(:term)
-        raise "location is not a valid parameter for lookup" if options.key?(:lookup)
-
-        response = business(business_id)
-
-        puts "Found business with id #{business_id}:"
-        puts JSON.pretty_generate(response)
-    else
-        puts "Please specify a command: search or lookup"
+            puts "Found business with id #{business_id}:"
+            puts JSON.pretty_generate(response)
+        else
+            puts "Please specify a command: search or lookup"
+        end
     end
-end
+
+end.parse!
