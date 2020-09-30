@@ -1,4 +1,6 @@
-def run
+class Welcome
+    
+    def run
     greeting
 end
 
@@ -23,5 +25,5 @@ end
 def user_number
     puts "Please enter your number:"
 end
-
+end
 #sleep(1)
