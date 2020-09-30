@@ -4,6 +4,5 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.integer :rating
       t.text :comment
     end
-    
   end
 end
