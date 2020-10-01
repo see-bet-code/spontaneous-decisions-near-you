@@ -92,8 +92,7 @@ class YelpAPI
         response.parse
     end
 
-    def self.parent_categories
-        
+    def self.parent_categories       
         DATA_HASH.map do |hash|
             hash['alias'] if hash['parents'].empty?
         end.uniq
@@ -108,9 +107,9 @@ class YelpAPI
 
     def self.assign_risk_level(dist)
         case dist
-        when 0..4024
+        when 0..16093.4
             1
-        when 4025..40234
+        when 16093.5..24140.2
             2
         else
             3
@@ -122,27 +121,25 @@ class YelpAPI
 
         rand_category = self.user_categories(age).sample
         businesses = self.search(rand_category, location)['businesses']
-        if businesses.size == 0
+        if !businesses
             self.seed_yelp_plans(age, location)
         else
             businesses.map do |plan|
                 risk = self.assign_risk_level(plan['distance'])
                 address = plan['location']['display_address'].join(" ")
                 categories = plan['categories'].map { |hash| hash['alias'] }
-                open('./db/seeds.rb', 'a') do |f|
-                    f << "\nPlan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
-                        \"user_id\"=>nil, \"risk_level_id\"=>#{risk}, \"distance\"=>#{plan['distance']}, \"desc\"=>nil)"
-                end
 
-                #self.append_to_seed(name: plan['name'], address: address, categories: categories, risk: risk, distance: plan['distance'])
+                self.append_to_seed(name: plan['name'], address: address, categories: categories, \
+                    risk: risk, distance: plan['distance'])
             end
         end
     end
 
     def self.append_to_seed(name: , address: , categories:, risk:, distance: )
         open('./db/seeds.rb', 'a') do |f|
+            description = "Head over to #{name} on #{address}!"
             f << "\nPlan.create(\"name\"=>\"#{name}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
-                \"user_id\"=>nil, \"risk_level_id\"=>#{risk}, \"distance\"=>#{distance}, \"desc\"=>nil)"
+                \"user_id\"=>nil, \"risk_level_id\"=>#{risk}, \"distance\"=>#{distance}, \"desc\"=>\"#{description}\" )"
         end
     end
 
