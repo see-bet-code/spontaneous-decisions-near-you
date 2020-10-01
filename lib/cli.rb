@@ -2,6 +2,8 @@ require "pry"
 require 'rest-client'
 require 'rainbow'
 require "tty-prompt"
+require "active_record"
+require "./app/models/user.rb"
 
 class SpontaneousDecision
 # prompt = TTY::Prompt.new
@@ -31,9 +33,9 @@ class SpontaneousDecision
         mobile = prompt.ask("Phone number?", required: true)
         zip = prompt.ask("Zip?", validate: /\A\d{5}\Z/)
         puts "Thank you for signing up #{name}!"
-        # user = User.create(name: name, email: email, password: password, location: zip, mobile: mobile)
+        user = User.create(name: name, email: email, password: password, location: zip, mobile: mobile)
         sleep (1)
-        # @user = User.all.find_by(name: name, email: email, password: password, location: zip, mobile: mobile)
+        @user = User.all.find_by(name: name, email: email, password: password, location: zip, mobile: mobile)
         puts "User created. Quiz next!"
         SpontaneousDecision.level
     end
