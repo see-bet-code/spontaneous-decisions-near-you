@@ -5,87 +5,67 @@ require "tty-prompt"
 
 class SpontaneousDecision
 # prompt = TTY::Prompt.new
+    def self.welcome
+        prompt = TTY::Prompt.new
+        welcome = prompt.select("Welcome! Please log in or sign up.") do |menu|
+            menu.choice "Log in"
+            menu.choice "Sign up"
+        end
+        if welcome == "Log in"
+            sleep (1)
+            SpontaneousDecision.log_in
+        elsif welcome == "Sign up"
+            sleep (1)
+            SpontaneousDecision.sign_up
+        end
+    end
 
-
-    # def self.quiz
-    #     prompt = TTY::Prompt.new
-    #     result = prompt.collect do 
-    #         key(:name).ask("Name?")
-    #         puts "Welcome ****! Just a few questions before we provide a spontaneous option for you."
-    #         key(:age).ask("Age?", convert: :int)
-    #         key(:city).ask("City?", required: true)
-    #         key(:zip).ask("Zip?", validate: /\A\d{5}\Z/)
-    #     end
-    #     sleep(1)
-    #     puts "Thank you for giving us your data >:)"
-    #     sleep(2)
-    # end
-    # result returns a hash w key/value pairs ex.{:name=>"Casey", :age=>19, :city=>"Brooklyn", :zip=>"11221"}
-
-
-    def self.quiz
+    def self.sign_up
         prompt = TTY::Prompt.new
         name = prompt.ask("Name?") 
         sleep (1)
         puts "Welcome #{name}! Just a few questions before we provide a spontaneous option for you."
         sleep (1)
-        email = prompt.ask("Email?", validate: /\A\w+@\w+\.\w+\Z/) 
-        number = prompt.ask("Phone number?", required: true)
-        city = prompt.ask("City?", required: true)
+        email = prompt.ask("Enter your Email", validate: /\A\w+@\w+\.\w+\Z/) 
+        password = prompt.mask("Create a password")
+        mobile = prompt.ask("Phone number?", required: true)
         zip = prompt.ask("Zip?", validate: /\A\d{5}\Z/)
-        # user = User.create(name: name, location: zip)
-        sleep(1)
-        puts "Thank you for giving us your data >:)"
-        sleep(2)
-        SpontaneousDecision.stay_go
+        puts "Thank you for signing up #{name}!"
+        # user = User.create(name: name, email: email, password: password, location: zip, mobile: mobile)
+        sleep (1)
+        # @user = User.all.find_by(name: name, email: email, password: password, location: zip, mobile: mobile)
+        puts "User created. Quiz next!"
+        SpontaneousDecision.level
     end
-SpontaneousDecision.quiz
-    
 
-# binding.pry
-
-    def self.stay_go
+    def self.log_in
         prompt = TTY::Prompt.new
-        stay_go = prompt.select("Would you like to stay close to home, or go out?", stay_go) do |menu|
-            menu.choice "Stay home"
-            menu.choice "Go out"
-        end
-        if stay_go== "Stay home"
-            puts "Randomized array of choices. Read a book"
-        elsif stay_go == "Go out"
+        email = prompt.ask("Enter your Email")
+        password = prompt.mask("Enter your Password")
+        if User.find_by(name: name, email: email, password: password, location: zip, mobile: mobile)
+            @user = User.all.find_by(name: name, email: email, password: password, location: zip, mobile: mobile)
             SpontaneousDecision.level
+        else
+            system("clear")
+            SpontaneousDecision.sign_up
         end
-        sleep(1)
     end
 
     def self.level
         prompt = TTY::Prompt.new
-        risk_level = prompt.select("What is your risk level?", risk_level) do |menu|
+        puts "Hello, #{@user.name}! How risky would you like your Spontaneous Decison to be?"
+        risk_level = prompt.select("Risk level?", risk_level) do |menu|
             menu.choice "high"
             menu.choice "medium"
             menu.choice "low"
         end
     end
-binding.pry
+
 end
 
+SpontaneousDecision.welcome
 
 
-
-
-
-
-# class Welcome
-#     def run
-#         greeting
-#     end
-
-
-#     def greeting
-#         puts "Welcome! Let's find a spontaneous decision near you."
-#         sleep(3)
-#         sign_up
-#     end
 
 #     def sign_up
 #         puts "Please enter your name:"
