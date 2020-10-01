@@ -35,10 +35,6 @@ class SpontaneousDecision
         puts "Thank you for signing up #{name}!"
         @user = User.create(name: name, email: email, password: password, location: zip, mobile: mobile)
         sleep (1)
-<<<<<<< HEAD
-=======
-        #@user = User.all.find_by(name: name, email: email, password: password, location: zip, mobile: mobile)
->>>>>>> e2a760040f6048963cee6a982d5dd7bb44783b18
         puts "User created. Quiz next!"
         SpontaneousDecision.level
     end
