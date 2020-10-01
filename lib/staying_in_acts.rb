@@ -35,4 +35,4 @@ class ActivityScraper < Kimurai::Base
     end
 end
 
-ActivityScraper.parse!(:parse, url: "https://www.random-generator.org.uk/covid-19/")
+#ActivityScraper.parse!(:parse, url: "https://www.random-generator.org.uk/covid-19/")
