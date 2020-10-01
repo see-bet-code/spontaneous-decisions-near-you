@@ -195,3 +195,69 @@ Plan.create("name"=>"ProEnc", "location"=>"101 Hudson St Jersey City, NJ 07302",
                 "user_id"=>nil, "risk_level_id"=>1, "distance"=>2576.3223557485794, "desc"=>"Head over to ProEnc on 101 Hudson St Jersey City, NJ 07302!" )
 Plan.create("name"=>"H and B Digital", "location"=>"29 W 46th St New York, NY 10036", "category"=>'["electronics", "photographystores"]',
                 "user_id"=>nil, "risk_level_id"=>2, "distance"=>7639.055546795277, "desc"=>"Head over to H and B Digital on 29 W 46th St New York, NY 10036!" )
+Plan.create("name"=>"NY Bus Tours", "location"=>"79 Quincy St Brooklyn, NY 11238", "category"=>'["publictransport"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>5408.418930936264, "desc"=>"Head over to NY Bus Tours on 79 Quincy St Brooklyn, NY 11238!" )
+Plan.create("name"=>"Jaguar Bus Tour", "location"=>"59 Canal St New York, NY 10002", "category"=>'["buses"]',
+                "user_id"=>nil, "risk_level_id"=>1, "distance"=>3286.347481341115, "desc"=>"Head over to Jaguar Bus Tour on 59 Canal St New York, NY 10002!" )
+Plan.create("name"=>"Big Bus Tour - New York", "location"=>"New York, NY 10156", "category"=>'["bustours"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>7817.252415509479, "desc"=>"Head over to Big Bus Tour - New York on New York, NY 10156!" )
+Plan.create("name"=>"Small Bus Tours NYC", "location"=>"32 W 39th St Fl 4th New York, NY 10018", "category"=>'["bustours", "boattours", "walkingtours"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>7028.211882518079, "desc"=>"Head over to Small Bus Tours NYC on 32 W 39th St Fl 4th New York, NY 10018!" )
+Plan.create("name"=>"A Slice of Brooklyn Bus Tours", "location"=>"2036 61st St Brooklyn, NY 11204", "category"=>'["bustours"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>9191.35027189113, "desc"=>"Head over to A Slice of Brooklyn Bus Tours on 2036 61st St Brooklyn, NY 11204!" )
+Plan.create("name"=>"Small Bus Tours NYC", "location"=>"51st and Broadway New York, NY 10019", "category"=>'["boattours", "bustours"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>8050.596262400218, "desc"=>"Head over to Small Bus Tours NYC on 51st and Broadway New York, NY 10019!" )
+Plan.create("name"=>"The Polynesian", "location"=>"400 W 42nd St New York, NY 10036", "category"=>'["cocktailbars", "tikibars", "lounges"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>7398.257818931798, "desc"=>"Head over to The Polynesian on 400 W 42nd St New York, NY 10036!" )
+Plan.create("name"=>"Zombie Hut", "location"=>"273 Smith St Brooklyn, NY 11231", "category"=>'["tikibars"]',
+                "user_id"=>nil, "risk_level_id"=>1, "distance"=>2759.120840581535, "desc"=>"Head over to Zombie Hut on 273 Smith St Brooklyn, NY 11231!" )
+Plan.create("name"=>"Cellar 335", "location"=>"335 Newark Ave Jersey City, NJ 07302", "category"=>'["newamerican", "cocktailbars", "tikibars"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>4160.022423469416, "desc"=>"Head over to Cellar 335 on 335 Newark Ave Jersey City, NJ 07302!" )
+Plan.create("name"=>"The Highwater", "location"=>"3420 Broadway Astoria, NY 11106", "category"=>'["newamerican", "hawaiian", "tikibars"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>11007.599782625024, "desc"=>"Head over to The Highwater on 3420 Broadway Astoria, NY 11106!" )
+Plan.create("name"=>"Pod Times Square Hotel", "location"=>"400 W 42nd St New York, NY 10036", "category"=>'["hotels"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>7384.248763538698, "desc"=>"Head over to Pod Times Square Hotel on 400 W 42nd St New York, NY 10036!" )
+Plan.create("name"=>"Halau Hula O Na Mele Aina O Hawai'i", "location"=>"249 Betsy Ross Dr Orangeburg, NY 10962", "category"=>'["theater", "dance_schools"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>8297.620872178279, "desc"=>"Head over to Halau Hula O Na Mele Aina O Hawai'i on 249 Betsy Ross Dr Orangeburg, NY 10962!" )
+Plan.create("name"=>"Pig and Khao", "location"=>"68 Clinton St New York, NY 10002", "category"=>'["filipino", "thai", "asianfusion"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>4043.9292049572073, "desc"=>"Head over to Pig and Khao on 68 Clinton St New York, NY 10002!" )
+Plan.create("name"=>"Pacific Holidays", "location"=>"12 W 32nd St Fl 6 New York, NY 10001", "category"=>'["travelservices"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>6465.964570253663, "desc"=>"Head over to Pacific Holidays on 12 W 32nd St Fl 6 New York, NY 10001!" )
+Plan.create("name"=>"Otto's Shrunken Head", "location"=>"538 E 14th St New York, NY 10009", "category"=>'["tikibars"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>5187.218535173637, "desc"=>"Head over to Otto's Shrunken Head on 538 E 14th St New York, NY 10009!" )
+Plan.create("name"=>"The Plaza", "location"=>"Fifth Avenue At Central Park S New York, NY 10019", "category"=>'["venues", "hotels"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>8617.848321093295, "desc"=>"Head over to The Plaza on Fifth Avenue At Central Park S New York, NY 10019!" )
+Plan.create("name"=>"Surf Bar", "location"=>"139 N 6th St Brooklyn, NY 11249", "category"=>'["seafood", "tikibars", "burgers"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>5812.7048881647615, "desc"=>"Head over to Surf Bar on 139 N 6th St Brooklyn, NY 11249!" )
+Plan.create("name"=>"Ori Manea", "location"=>"257 W 39th St New York, NY 10018", "category"=>'["dance_schools"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>7133.626035445841, "desc"=>"Head over to Ori Manea on 257 W 39th St New York, NY 10018!" )
+Plan.create("name"=>"Noreetuh", "location"=>"128 1st Ave New York, NY 10009", "category"=>'["newamerican", "hawaiian"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>4652.0733580783135, "desc"=>"Head over to Noreetuh on 128 1st Ave New York, NY 10009!" )
+Plan.create("name"=>"wagamama - nomad", "location"=>"210 5th Ave New York, NY 10010", "category"=>'["asianfusion", "noodles"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>5980.45523909551, "desc"=>"Head over to wagamama - nomad on 210 5th Ave New York, NY 10010!" )
+Plan.create("name"=>"Brooklyn Museum", "location"=>"200 Eastern Pkwy Brooklyn, NY 11238", "category"=>'["artmuseums"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>5529.8243275296445, "desc"=>"Head over to Brooklyn Museum on 200 Eastern Pkwy Brooklyn, NY 11238!" )
+Plan.create("name"=>"Chikarashi", "location"=>"227 Canal St New York, NY 10013", "category"=>'["japanese", "hawaiian", "poke"]',
+                "user_id"=>nil, "risk_level_id"=>1, "distance"=>3093.6918982600346, "desc"=>"Head over to Chikarashi on 227 Canal St New York, NY 10013!" )
+Plan.create("name"=>"Brazilian Jiu-Jitsu Academy", "location"=>"55-19 69th St Maspeth, NY 11378", "category"=>'["brazilianjiujitsu"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>11188.446403398206, "desc"=>"Head over to Brazilian Jiu-Jitsu Academy on 55-19 69th St Maspeth, NY 11378!" )
+Plan.create("name"=>"Modern Martial Arts Astoria", "location"=>"35-08 Ditmars Blvd Astoria, NY 11105", "category"=>'["gyms", "kickboxing", "brazilianjiujitsu"]',
+                "user_id"=>nil, "risk_level_id"=>2, "distance"=>12908.638144487188, "desc"=>"Head over to Modern Martial Arts Astoria on 35-08 Ditmars Blvd Astoria, NY 11105!" )
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Make your own paint")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Write a poem about a pie eating content")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Write to an old person who doesn't have any family")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Use Poem Generator")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Wash the dishes in  wedding dress")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Make a photo story using a plot from Plot Generator")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Build a wardrobe out of cardboard")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"Host a movie quiz")
+Plan.create("name"=>"Random Indoor Activities", "location"=>nil, "category"=>'["Misc."]',
+            "user_id"=>nil, "risk_level_id"=>1, "distance"=>nil, "desc"=>"See if you can make a bubble caterpillar")
