@@ -3,41 +3,71 @@ require 'rest-client'
 require 'rainbow'
 require "tty-prompt"
 
-prompt = TTY::Prompt.new
+class SpontaneousDecision
+# prompt = TTY::Prompt.new
 
 
-# prompt.ask("What is your name?", default: ENV["USER"])
-
-result = prompt.collect do
-    key(:name).ask("Name?")
-    # name = result[:name]
-    puts "Welcome **NAME! Just a few questions before we provide a spontaneous option for you."
-    
-    key(:age).ask("Age?", convert: :int)
-  
-    # key(:address) do
-    #   key(:street).ask("Street?", required: true)
-      key(:city).ask("City?", required: true)
-      key(:zip).ask("Zip?", validate: /\A\d{5}\Z/)
+    # def self.quiz
+    #     prompt = TTY::Prompt.new
+    #     result = prompt.collect do 
+    #         key(:name).ask("Name?")
+    #         puts "Welcome ****! Just a few questions before we provide a spontaneous option for you."
+    #         key(:age).ask("Age?", convert: :int)
+    #         key(:city).ask("City?", required: true)
+    #         key(:zip).ask("Zip?", validate: /\A\d{5}\Z/)
+    #     end
+    #     sleep(1)
+    #     puts "Thank you for giving us your data >:)"
+    #     sleep(2)
     # end
-  end
-# result returns a hash w key/value pairs ex.{:name=>"Casey", :age=>19, :city=>"Brooklyn", :zip=>"11221"}
-
-sleep(1)
-puts "Thank you for giving us your data >:)"
-sleep(2)
-
-stay_go = %w(home out)
-prompt.select("Would you like to stay close to home, or go out?", stay_go)
-
-sleep(1)
+    # result returns a hash w key/value pairs ex.{:name=>"Casey", :age=>19, :city=>"Brooklyn", :zip=>"11221"}
 
 
-risk_level = %w(high medium low)
-prompt.select("What is your risk level?", risk_level)
+    def self.quiz
+        prompt = TTY::Prompt.new
+        name = prompt.ask("Name?") 
+        sleep (1)
+        puts "Welcome #{name}! Just a few questions before we provide a spontaneous option for you."
+        sleep (1)
+        email = prompt.ask("Email?", validate: /\A\w+@\w+\.\w+\Z/) 
+        number = prompt.ask("Phone number?", required: true)
+        city = prompt.ask("City?", required: true)
+        zip = prompt.ask("Zip?", validate: /\A\d{5}\Z/)
+        # user = User.create(name: name, location: zip)
+        sleep(1)
+        puts "Thank you for giving us your data >:)"
+        sleep(2)
+        SpontaneousDecision.stay_go
+    end
+SpontaneousDecision.quiz
+    
 
-  binding.pry
+# binding.pry
 
+    def self.stay_go
+        prompt = TTY::Prompt.new
+        stay_go = prompt.select("Would you like to stay close to home, or go out?", stay_go) do |menu|
+            menu.choice "Stay home"
+            menu.choice "Go out"
+        end
+        if stay_go== "Stay home"
+            puts "Randomized array of choices. Read a book"
+        elsif stay_go == "Go out"
+            SpontaneousDecision.level
+        end
+        sleep(1)
+    end
+
+    def self.level
+        prompt = TTY::Prompt.new
+        risk_level = prompt.select("What is your risk level?", risk_level) do |menu|
+            menu.choice "high"
+            menu.choice "medium"
+            menu.choice "low"
+        end
+    end
+binding.pry
+end
 
 
 
