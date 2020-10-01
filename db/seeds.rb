@@ -1,73 +1,112 @@
-Plan.create("name"=>"Gotham Archery", "location"=>"480 Baltic St Brooklyn, NY 11217", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Gotham Archery", "location"=>"73 Allen St Fl 2 New York, NY 10002", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Hidden Gems Archery", "location"=>"Brooklyn, NY 11201", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Axes And Arrows", "location"=>"47- 11 Van Dam St Long Island City, NY 11101", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Jersey City Archery", "location"=>"7 Sherman Ave Fl 2 Jersey City, NJ 07307", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"La Perla Del Ulua", "location"=>"354 Melrose St Brooklyn, NY 11237", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"El Rey del Sur", "location"=>"115 Bowers St Jersey City, NJ 07307", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Progreso", "location"=>"5303 Fort Hamilton Pkwy New York, NY 11219", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Rinconcito Copaneco", "location"=>"15 Jordan Ave Jersey City, NJ 07306", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Casa Adela", "location"=>"66 Ave C New York, NY 10009", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"El Rinconcito Tipico Hondureno", "location"=>"1224 Bergenline Ave Union City, NJ 07087", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Empanada Mama - Hell's Kitchen", "location"=>"765 9th Ave New York, NY 10019", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Juanita's Restaurant", "location"=>"526 6th St Ste A Union City, NJ 07087", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Restaurant Salvadoreno Usuluteco", "location"=>"4017 5th Ave Brooklyn, NY 11232", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Laboratory Testing", "location"=>"401 Goffle Rd Lab Corp Ridgewood, NJ 07450", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Financial Investigation Services", "location"=>"New York, NY 10308", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Paragon Sports", "location"=>"867 Broadway New York, NY 10003", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"REI", "location"=>"303 Lafayette St New York, NY 10012", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Jane DO - Jersey City Studio", "location"=>"160 Newark Ave Fl 3 Jersey City, NJ 07302", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Equinox Tribeca", "location"=>"54 Murray St New York, NY 10007", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"New York Sports Clubs", "location"=>"30 Broad St Fl 1 New York, NY 10005", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"ZogSports", "location"=>"19 W 36th St Fl 4 New York, NY 10018", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"GYM NYC", "location"=>"227 Mulberry St New York, NY 10012", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Planet Fitness", "location"=>"25 Broadway New York, NY 10004", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Mason's Tennis Mart", "location"=>"56 E 53rd St New York, NY 10022", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Adorama", "location"=>"42 W 18th St New York, NY 10011", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"CompleteBody Financial District", "location"=>"10 Hanover Sq New York, NY 10005", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Just Train", "location"=>"6 Maiden Ln Fl 2 New York, NY 10038", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Equinox Wall Street", "location"=>"14 Wall St New York, NY 10005", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Base", "location"=>"60 Christopher Columbus Dr Jersey City, NJ 07302", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Harbor Fitness", "location"=>"550 5th Ave Brooklyn, NY 11215", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Retro Fitness", "location"=>"1 New York Plz New York, NY 10004", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"JackRabbit - Union Square", "location"=>"42 W 14th St New York, NY 10011", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"New York Golf Center", "location"=>"131 W 35th St New York, NY 10001", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Crunch Fitness - Tribeca", "location"=>"80 Leonard St New York, NY 10013", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"World Boxing Gym", "location"=>"29 Division St Jersey City, NJ 07302", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"B&H Photo Video - Electronics and Camera Store", "location"=>"420 9th Ave New York, NY 10001", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"New York Bartending School", "location"=>"68 W 39th St New York, NY 10018", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Ludlow Fitness", "location"=>"100 Delancey St New York, NY 10002", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Complete by CompleteBody Union Square", "location"=>"25 West 14th St New York, NY 10011", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Mid City Gym", "location"=>"345 W 42nd St New York, NY 10036", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Savelli", "location"=>"195 Smith St New York, NY 11201", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Trattoria Trecolori", "location"=>"254 West 47th St New York, NY 10036", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Trattoria Dell'Arte", "location"=>"900 7th Ave New York, NY 10019", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Stella 34 Trattoria", "location"=>"151 W 34th St Macy's Herald Square New York, NY 10001", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Gnocco", "location"=>"337 E 10th St New York, NY 10009", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Villa Berulia", "location"=>"107 E 34th St New York, NY 10016", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Aurora", "location"=>"70 Grand St Brooklyn, NY 11249", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"The Shoeshine Guild", "location"=>"75 9th Ave Chelsea Market New York, NY 10011", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Esther Shoe Repair", "location"=>"7 Hanover Sq New York, NY 10004", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Tony Shoe Repair", "location"=>"208 W 35th St New York, NY 10001", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Cobbler Express Shoe Repair", "location"=>"60 Wall St New York, NY 10005", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Chelsea Cobbler", "location"=>"196 7th Ave New York, NY 10011", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Leather Spa - Downtown", "location"=>"28 John St New York, NY 10038", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Ralph's Shoe Repair", "location"=>"59 Beach St New York, NY 10013", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Shoe Repair And Shine", "location"=>"206 Varick St New York, NY 10014", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"V Zeev Express Shoe Repair", "location"=>"686 Flatbush Ave Brooklyn, NY 11226", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Shoe Repair", "location"=>"205 W 57st Manhattan, NY 10019", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Master Shoe Repair", "location"=>"90 Worth St New York, NY 11013", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Express Shoe Repair", "location"=>"59 Franklin St New York, NY 10013", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Arnold's Custom Shoe Repair", "location"=>"168 E 44th St New York, NY 10017", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Alex Shoe Repair", "location"=>"166 W 27th St New York, NY 10001", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Friends Shoe Repair & Tailoring", "location"=>"166 E 28th St New York, NY 10016", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Drago Shoe Repair", "location"=>"625 8th Ave Bsmt 2 New York, NY 10018", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Jacob's Shoe Repair", "location"=>"25 Maiden Ln New York, NY 10038", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Top Shoe Repair", "location"=>"600 5th Ave Frnt New York, NY 10020", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Anthony's Shoe Repair", "location"=>"153 E 43rd St New York, NY 10017", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Soleman", "location"=>"201-235 W 33rd St New York, NY 10001", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Steve Express Shoe Repair", "location"=>"311 E 14th St New York, NY 10003", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Eddie's Shoe Repair", "location"=>"30 Rockefeller Plz New York, NY 10112", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Leather Spa", "location"=>"55 W 55th St New York, NY 10019", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Giovanni D'Italia Shoe Repair", "location"=>"266 7th St Hoboken, NJ 07030", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
-Plan.create("name"=>"Jim's Shoe Repair", "location"=>"50 E 59th St New York, NY 10022", "category"=>nil, "user_id"=>nil, "risk_level_id"=>nil)
+Plan.create("name"=>"Claudia's Coffee Shop", "location"=>"125 Broad St New York, NY 10004", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1174.3901918816248)
+Plan.create("name"=>"Kaffe 1668 South", "location"=>"275 Greenwich St New York, NY 10007", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2350.413927635338)
+Plan.create("name"=>"Blue Bottle Coffee", "location"=>"150 Greenwich St New York, NY 10007", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1848.886974282523)
+Plan.create("name"=>"787 Coffee", "location"=>"66 Pearl St New York, NY 10004", "category"=>'["coffee", "empanadas"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1241.2577819169496)
+Plan.create("name"=>"Gregorys Coffee", "location"=>"42 Broadway New York, NY 10004", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1367.581850229843)
+Plan.create("name"=>"Laughing Man Coffee & Tea", "location"=>"184 Duane St New York, NY 10013", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2592.9125867771786)
+Plan.create("name"=>"Black Fox Coffee", "location"=>"70 Pine St New York, NY 10005", "category"=>'["cafes", "coffee", "sandwiches"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1662.5229835972318)
+Plan.create("name"=>"Ground Central", "location"=>"2 Coenties Slip New York, NY 10004", "category"=>'["coffee", "sandwiches"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1278.882012610708)
+Plan.create("name"=>"Semicolon Cafe", "location"=>"77 Hudson St Jersey City, NJ 07302", "category"=>'["coffee", "cafes"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2432.5475884250136)
+Plan.create("name"=>"9 Bar Cafe", "location"=>"200 Greene St Jersey City, NJ 07311", "category"=>'["cafes"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2971.9263561162597)
+Plan.create("name"=>"Sawada Coffee", "location"=>"33 Cortlandt Aly New York, NY 10013", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2983.901496692999)
+Plan.create("name"=>"La Colombe Coffee", "location"=>"67 Wall St New York, NY 10005", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1563.0045848427644)
+Plan.create("name"=>"One Two Cup Cafe", "location"=>"201 Warren St Jersey City, NJ 07302", "category"=>'["coffee", "sandwiches"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2621.368117607925)
+Plan.create("name"=>"Amano Café", "location"=>"172 W 4th St New York, NY 10014", "category"=>'["cafes", "coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>4403.282417173339)
+Plan.create("name"=>"Blue Spoon Coffee", "location"=>"90 William St New York, NY 10038", "category"=>'["cafes"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1814.0898198337654)
+Plan.create("name"=>"Book Club", "location"=>"197 E 3rd St New York, NY 10009", "category"=>'["bookstores", "coffee", "wine_bars"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>4423.0940032858125)
+Plan.create("name"=>"Cafe Patoro", "location"=>"223 Front St New York, NY 10038", "category"=>'["bakeries", "brazilian", "coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2055.1246137560547)
+Plan.create("name"=>"White Noise Coffee Co", "location"=>"57 Smith St Brooklyn, NY 11201", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2840.874282082263)
+Plan.create("name"=>"Birch Coffee", "location"=>"8 Spruce St New York, NY 10038", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2146.612375623496)
+Plan.create("name"=>"9 Bar Cafe", "location"=>"18 Erie St Jersey City, NJ 07302", "category"=>'["cafes", "coffee", "breakfast_brunch"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>3492.534260757726)
+Plan.create("name"=>"Gotan - Tribeca", "location"=>"130 Franklin St New York, NY 10013", "category"=>'["cafes", "breakfast_brunch", "desserts"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2912.759669350145)
+Plan.create("name"=>"Manon Café", "location"=>"120 Broadway New York, NY 10271", "category"=>'["coffee", "belgian"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1694.3659757187706)
+Plan.create("name"=>"Blue Bottle Coffee", "location"=>"22 Broad St New York, NY 10005", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1482.6848701200497)
+Plan.create("name"=>"La Colombe Coffee", "location"=>"319 Church St New York, NY 10013", "category"=>'["coffee"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>3087.2582982790505)
+Plan.create("name"=>"The Wooly Daily", "location"=>"11 Barclay St New York, NY 10007", "category"=>'["coffee", "bakeries"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2173.801534470185)
+Plan.create("name"=>"The Floating Pool at Brooklyn Bridge Park Beach", "location"=>"Between Piers 4 And 5 off Furman St Brooklyn, NY 11201", "category"=>'["swimmingpools", "beaches"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1617.4182272105993)
+Plan.create("name"=>"Pier 4 Beach", "location"=>"4 Montague St Pier 4 Brooklyn, NY 11201", "category"=>'["beaches"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1837.6851954403976)
+Plan.create("name"=>"Newport Green", "location"=>"700 Washington Blvd Jersey City, NJ 07310", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>4167.919720688558)
+Plan.create("name"=>"Urban Paddle", "location"=>"9 Marin Blvd Jersey City, NJ 07302", "category"=>'["rafting"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2661.2374435583015)
+Plan.create("name"=>"Teardrop Park", "location"=>"Warren St New York, NY 10005", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2397.6007893341603)
+Plan.create("name"=>"Pier 40", "location"=>"353 West St Hudson River Park New York, NY 10014", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>3843.5174514576915)
+Plan.create("name"=>"Gantry Plaza State Park", "location"=>"4-09 47th Rd Long Island City, NY 11101", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>7650.50621688718)
+Plan.create("name"=>"Pier 25", "location"=>"225 W St Hudson River Park New York, NY 10013", "category"=>'["mini_golf", "playgrounds", "parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2821.0846768711167)
+Plan.create("name"=>"Governors Island National Monument", "location"=>"10 S St Slip 7 New York, NY 10004", "category"=>'["landmarks", "parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>599.4725074078812)
+Plan.create("name"=>"Long Island Sound", "location"=>"New York, NY 10001", "category"=>'["beaches"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>6731.8688461488155)
+Plan.create("name"=>"Brooklyn Bridge Park", "location"=>"334 Furman St Brooklyn, NY 11201", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2124.9857231236806)
+Plan.create("name"=>"J. Owen Grundy Park", "location"=>"Exchange Pl Jersey City, NJ 07302", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2503.183853768044)
+Plan.create("name"=>"Surf Yoga Beer", "location"=>"135 Madison Ave Fl 5 New York, NY 10016", "category"=>'["yoga", "surfing"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>6424.601453272791)
+Plan.create("name"=>"Frank Sinatra Park", "location"=>"401 Sinatra Dr Hoboken, NJ 07030", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>5031.772641296613)
+Plan.create("name"=>"Sea The City Jet Ski", "location"=>"84 Audrey Zapp Dr Jersey City, NJ 07305", "category"=>'["tours", "jetskis", "boating"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2333.1632047421654)
+Plan.create("name"=>"Liberty State Park", "location"=>"200 Morris Pesin Dr Jersey City, NJ 07305", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>2947.7422367512136)
+Plan.create("name"=>"Domino Park", "location"=>"15 River St Brooklyn, NY 11249", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>4878.705655580759)
+Plan.create("name"=>"Sourced Adventures", "location"=>"85 Delancey St Fl 2 New York, NY 10002", "category"=>'["rafting", "skiresorts", "travelservices"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>3711.231144229123)
+Plan.create("name"=>"Brooklyn Bridge Park Pier 6", "location"=>"Atlantic Ave And Furman St Brooklyn, NY 11201", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1818.16289455066)
+Plan.create("name"=>"Louis Valentino Jr Park & Pier", "location"=>"Coffey St & Ferris St Brooklyn, NY 11231", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1959.7024639156032)
+Plan.create("name"=>"Destination Backcountry Adventures", "location"=>"557 6th Ave Brooklyn, NY 11215", "category"=>'["hiking", "rafting", "yoga"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>4519.27217837832)
+Plan.create("name"=>"Mayor Richard A. Rutkowski Park", "location"=>"John F Kennedy Blvd W Bayonne, NJ 07002", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>7668.52058265836)
+Plan.create("name"=>"Shore Road Park", "location"=>"4 Ave Brooklyn, NY 11209", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>5179.838773974673)
+Plan.create("name"=>"Hudson River Park", "location"=>"59TH St West Side Hwy New York, NY 10001", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>6559.729328747687)
+Plan.create("name"=>"The Battery", "location"=>"State St & Battery Pl New York, NY 10004", "category"=>'["parks"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>1154.5891160157287)
+Plan.create("name"=>"Simit Sarayi", "location"=>"435 5th Ave New York, NY 10016", "category"=>'["bakeries", "turkish", "cafes"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>7015.304604770783)
+Plan.create("name"=>"Little Rascal", "location"=>"163 Elizabeth St New York, NY 10012", "category"=>'["mideastern", "turkish", "mediterranean"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>3574.936118441367)
+Plan.create("name"=>"Sip Sak", "location"=>"928 2nd Ave New York, NY 10022", "category"=>'["turkish", "bars", "salad"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>7904.225911131666)
+Plan.create("name"=>"Memo Shish Kebab", "location"=>"100 W 23rd St New York, NY 10011", "category"=>'["turkish", "mediterranean", "halal"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>5770.538934684049)
+Plan.create("name"=>"Lion's Milk", "location"=>"104 Roebling St Brooklyn, NY 11211", "category"=>'["coffee", "sandwiches", "turkish"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>5954.151568087406)
+Plan.create("name"=>"Lokanta", "location"=>"31-16 Broadway Astoria, NY 11106", "category"=>'["turkish"]',
+                        "user_id"=>nil, "risk_level_id"=>nil, "distance"=>10942.19901991323)

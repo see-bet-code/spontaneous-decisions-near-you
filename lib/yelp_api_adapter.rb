@@ -2,7 +2,7 @@ require "json"
 require "http"
 require "optparse"
 
-class YelpAPIAdapter
+class YelpAPI
 
     @@all = []
 
@@ -17,6 +17,7 @@ class YelpAPIAdapter
     DEFAULT_TERM = "school"
     DEFAULT_LOCATION = "10004"
     SEARCH_LIMIT = 25
+    DEFAULT_DISTANCE_LIMIT = 8046.72
 
 
     # Make a request to the Fusion search endpoint. Full documentation is online at:
@@ -51,7 +52,8 @@ class YelpAPIAdapter
         params = {
             term: term,
             location: location,
-            limit: limit
+            limit: limit,
+            is_closed: false
         }
 
         response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
@@ -88,24 +90,33 @@ class YelpAPIAdapter
         response.parse
     end
 
-    def self.random_yelp_category
+    def self.parent_categories
+        data_hash = JSON.parse(File.read('./lib/categories.json'))
+        data_hash.map do |hash|
+            hash['alias'] if hash['parents'].empty?
+        end.uniq
+    end
+
+    def self.all_categories
         data_hash = JSON.parse(File.read('./lib/categories.json'))
         data_hash.map do |hash|
             hash['alias']
-        end.sample
+        end.uniq
     end
 
     def self.seed_yelp_plans
-        ran_category = self.random_yelp_category
-        businesses = self.search(ran_category, 10004)['businesses']
-        if businesses.empty?
+        rand_category = self.all_categories.sample
+        businesses = self.search(rand_category, 10004)['businesses']
+        if businesses.size == 0
             self.seed_yelp_plans
         else
             businesses.map do |plan|
                 address = plan['location']['display_address'].join(" ")
+                categories = plan['categories'].map { |hash| hash['alias'] }
                 open('./db/seeds.rb', 'a') do |f|
-                    f << "Plan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>nil, \"user_id\"=>nil, \"risk_level_id\"=>nil)\n"
-                end if plan['is_closed'] == false
+                    f << "Plan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
+                        \"user_id\"=>nil, \"risk_level_id\"=>nil, \"distance\"=>#{plan['distance']})\n"
+                end
             end
         end
     end
