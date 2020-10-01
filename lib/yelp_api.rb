@@ -107,9 +107,9 @@ class YelpAPI
 
     def self.assign_risk_level(dist)
         case dist
-        when 0..16093.4
+        when 0..4023.36
             1
-        when 16093.5..24140.2
+        when 4023.37..24140.2
             2
         else
             3
