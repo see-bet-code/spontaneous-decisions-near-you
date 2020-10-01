@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_142717) do
+ActiveRecord::Schema.define(version: 2020_09_30_200404) do
 
   create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "category"
+    t.integer "user_id"
+    t.integer "risk_level_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
+    t.integer "plan_id"
+    t.integer "user_id"
   end
 
   create_table "risk_levels", force: :cascade do |t|

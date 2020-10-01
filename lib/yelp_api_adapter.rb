@@ -4,6 +4,8 @@ require "optparse"
 
 class YelpAPIAdapter
 
+    @@all = []
+
     # Constants, do not change these
     API_KEY = ENV["YELP_API_KEY"]
     API_HOST = "https://api.yelp.com"
@@ -14,7 +16,7 @@ class YelpAPIAdapter
     DEFAULT_BUSINESS_ID = "flatiron-school-new-york"
     DEFAULT_TERM = "school"
     DEFAULT_LOCATION = "10004"
-    SEARCH_LIMIT = 5
+    SEARCH_LIMIT = 25
 
 
     # Make a request to the Fusion search endpoint. Full documentation is online at:
@@ -44,16 +46,16 @@ class YelpAPIAdapter
     #        }
     #
     # Returns a parsed json object of the request
-    def self.search(term, location)
-    url = "#{API_HOST}#{SEARCH_PATH}"
-    params = {
-        term: term,
-        location: location,
-        limit: SEARCH_LIMIT
-    }
+    def self.search(term, location=DEFAULT_LOCATION, limit=SEARCH_LIMIT)
+        url = "#{API_HOST}#{SEARCH_PATH}"
+        params = {
+            term: term,
+            location: location,
+            limit: limit
+        }
 
-    response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
-    response.parse
+        response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
+        response.parse
     end
 
     def self.business_reviews(business_id)
@@ -61,6 +63,8 @@ class YelpAPIAdapter
         response = HTTP.auth("Bearer #{API_KEY}").get(url)
         response.parse["reviews"]
     end
+  
+
 
     # Look up a business by a given business id. Full documentation is online at:
     # https://www.yelp.com/developers/documentation/v3/business
@@ -77,12 +81,35 @@ class YelpAPIAdapter
     #        }
     #
     # Returns a parsed json object of the request
-    def business(business_id)
-    url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
+    def self.business(business_id)
+        url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
 
-    response = HTTP.auth("Bearer #{API_KEY}").get(url)
-    response.parse
+        response = HTTP.auth("Bearer #{API_KEY}").get(url)
+        response.parse
     end
+
+    def self.random_yelp_category
+        data_hash = JSON.parse(File.read('./lib/categories.json'))
+        data_hash.map do |hash|
+            hash['alias']
+        end.sample
+    end
+
+    def self.seed_yelp_plans
+        ran_category = self.random_yelp_category
+        businesses = self.search(ran_category, 10004)['businesses']
+        if businesses.empty?
+            self.seed_yelp_plans
+        else
+            businesses.map do |plan|
+                address = plan['location']['display_address'].join(" ")
+                open('./db/seeds.rb', 'a') do |f|
+                    f << "Plan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>nil, \"user_id\"=>nil, \"risk_level_id\"=>nil)\n"
+                end if plan['is_closed'] == false
+            end
+        end
+    end
+
 
 
     options = {}
@@ -132,7 +159,7 @@ class YelpAPIAdapter
             puts "Found business with id #{business_id}:"
             puts JSON.pretty_generate(response)
         else
-            puts "Please specify a command: search or lookup"
+            #puts "Please specify a command: search or lookup"
         end
     end
 
