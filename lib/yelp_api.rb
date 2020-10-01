@@ -104,6 +104,13 @@ class YelpAPI
         end.uniq
     end
 
+    def self.under_18_categories
+        # data_hash = JSON.parse(File.read('./lib/categories.json'))
+        # data_hash.map do |hash|
+        #     hash['alias'] if 
+        # end.uniq
+    end
+
     def self.seed_yelp_plans
         rand_category = self.all_categories.sample
         businesses = self.search(rand_category, 10004)['businesses']
@@ -115,7 +122,7 @@ class YelpAPI
                 categories = plan['categories'].map { |hash| hash['alias'] }
                 open('./db/seeds.rb', 'a') do |f|
                     f << "Plan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
-                        \"user_id\"=>nil, \"risk_level_id\"=>nil, \"distance\"=>#{plan['distance']})\n"
+                        \"user_id\"=>nil, \"risk_level_id\"=>nil, \"distance\"=>#{plan['distance']}, \"desc\"=>nil)\n"
                 end
             end
         end

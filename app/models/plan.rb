@@ -9,5 +9,10 @@ class Plan < ActiveRecord::Base
         return 'N/A' if reviews.none?
         self.reviews.average(:rating)
     end
+
+    def other_user_reviews
+        #TODO
+        #self.reviews 
+    end
     
 end
