@@ -4,14 +4,22 @@ Bundler.require
 require 'active_record'
 require 'rake'
 require_all 'app/models'
-require './lib/yelp_api'
+require_all 'lib'
 
-ENV["PLAYLISTER_ENV"] ||= "development"
+ActiveRecord::Base.establish_connection(
+  adapter: 'sqlite3',
+  database: "db/development.sqlite"
+)
 
-ActiveRecord::Base.establish_connection(ENV["PLAYLISTER_ENV"].to_sym)
-
+old_logger = ActiveRecord::Base.logger
+# ActiveRecord::Base.logger = old_logger
 ActiveRecord::Base.logger = nil
 
-if ENV["PLAYLISTER_ENV"] == "test"
-  ActiveRecord::Migration.verbose = false
-end
+# if ENV["PLAYLISTER_ENV"] == "test"
+#   ActiveRecord::Migration.verbose = false
+# end
+
+
+
+
+# ActiveRecord::Base.logger = Logger.new(STDOUT)
