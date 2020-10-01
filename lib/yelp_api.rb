@@ -19,6 +19,8 @@ class YelpAPI
     SEARCH_LIMIT = 25
     DEFAULT_DISTANCE_LIMIT = 8046.72
 
+    DATA_HASH = JSON.parse(File.read('./lib/categories.json'))
+
 
     # Make a request to the Fusion search endpoint. Full documentation is online at:
     # https://www.yelp.com/developers/documentation/v3/business_search
@@ -91,40 +93,56 @@ class YelpAPI
     end
 
     def self.parent_categories
-        data_hash = JSON.parse(File.read('./lib/categories.json'))
-        data_hash.map do |hash|
+        
+        DATA_HASH.map do |hash|
             hash['alias'] if hash['parents'].empty?
         end.uniq
     end
 
-    def self.all_categories
-        data_hash = JSON.parse(File.read('./lib/categories.json'))
-        data_hash.map do |hash|
-            hash['alias']
-        end.uniq
+    def self.user_categories(age)
+        exclusions = age < 21 ? ["adultentertainment", "bars"] : []
+        DATA_HASH.map do |hash|
+            hash['alias'] if !(exclusions.include?(hash['parents'].first) || exclusions.include?(hash['alias']))
+        end.compact.uniq
     end
 
-    def self.under_18_categories
-        # data_hash = JSON.parse(File.read('./lib/categories.json'))
-        # data_hash.map do |hash|
-        #     hash['alias'] if 
-        # end.uniq
+    def self.assign_risk_level(dist)
+        case dist
+        when 0..4024
+            1
+        when 4025..40234
+            2
+        else
+            3
+        end
     end
 
-    def self.seed_yelp_plans
-        rand_category = self.all_categories.sample
-        businesses = self.search(rand_category, 10004)['businesses']
+
+    def self.seed_yelp_plans(age, location)
+
+        rand_category = self.user_categories(age).sample
+        businesses = self.search(rand_category, location)['businesses']
         if businesses.size == 0
-            self.seed_yelp_plans
+            self.seed_yelp_plans(age, location)
         else
             businesses.map do |plan|
+                risk = self.assign_risk_level(plan['distance'])
                 address = plan['location']['display_address'].join(" ")
                 categories = plan['categories'].map { |hash| hash['alias'] }
                 open('./db/seeds.rb', 'a') do |f|
-                    f << "Plan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
-                        \"user_id\"=>nil, \"risk_level_id\"=>nil, \"distance\"=>#{plan['distance']}, \"desc\"=>nil)\n"
+                    f << "\nPlan.create(\"name\"=>\"#{plan['name']}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
+                        \"user_id\"=>nil, \"risk_level_id\"=>#{risk}, \"distance\"=>#{plan['distance']}, \"desc\"=>nil)"
                 end
+
+                #self.append_to_seed(name: plan['name'], address: address, categories: categories, risk: risk, distance: plan['distance'])
             end
+        end
+    end
+
+    def self.append_to_seed(name: , address: , categories:, risk:, distance: )
+        open('./db/seeds.rb', 'a') do |f|
+            f << "\nPlan.create(\"name\"=>\"#{name}\", \"location\"=>\"#{address}\", \"category\"=>\'#{categories}\',
+                \"user_id\"=>nil, \"risk_level_id\"=>#{risk}, \"distance\"=>#{distance}, \"desc\"=>nil)"
         end
     end
 
@@ -181,4 +199,6 @@ class YelpAPI
         end
     end
 
-end.parse!
+end
+
+YelpAPI.seed_yelp_plans(21, 10004)
