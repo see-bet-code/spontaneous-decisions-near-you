@@ -1,5 +1,6 @@
 ENV["PLAYLISTER_ENV"] ||= "development"
 
+require 'active_record'
 require_relative './config/environment'
 require 'sinatra/activerecord/rake'
 

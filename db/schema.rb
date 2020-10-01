@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2020_10_01_162351) do
   end
 
   create_table "risk_levels", force: :cascade do |t|
-    t.string "type"
     t.string "name"
   end
 

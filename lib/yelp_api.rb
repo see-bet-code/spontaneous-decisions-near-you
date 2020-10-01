@@ -67,7 +67,7 @@ class YelpAPI
         response = HTTP.auth("Bearer #{API_KEY}").get(url)
         response.parse["reviews"]
     end
-  
+    
 
 
     # Look up a business by a given business id. Full documentation is online at:
