@@ -117,9 +117,10 @@ class YelpAPI
     end
 
 
-    def self.seed_yelp_plans(age, location)
+    def self.generate_yelp_plans(age, location, id)
 
         rand_category = self.user_categories(age).sample
+        age = Time.
         businesses = self.search(rand_category, location)['businesses']
         if !businesses
             self.seed_yelp_plans(age, location)
@@ -128,9 +129,11 @@ class YelpAPI
                 risk = self.assign_risk_level(plan['distance'])
                 address = plan['location']['display_address'].join(" ")
                 categories = plan['categories'].map { |hash| hash['alias'] }
-
-                self.append_to_seed(name: plan['name'], address: address, categories: categories, \
-                    risk: risk, distance: plan['distance'])
+                description = "Head over to #{name} on #{address}!"
+                Plan.create(name: plan['name'], address: address, categories: categories, \
+                    risk: risk, distance: plan['distance'], user_id: id)
+                # self.append_to_seed(name: plan['name'], address: address, categories: categories, \
+                #     risk: risk, distance: plan['distance'])
             end
         end
     end
