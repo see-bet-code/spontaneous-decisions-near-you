@@ -142,6 +142,7 @@ class SpontaneousDecision
         selected_plan = @prompt.select("Choose a plan!", plan_options)
         #proposed = PLan.inside.sample(2) + Plan
         Plan.find_by(desc: selected_plan).update(selected?: true, user_id: @user.id)
+        self.main_choice
     end
 
 end
