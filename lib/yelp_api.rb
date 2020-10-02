@@ -125,12 +125,12 @@ class YelpAPI
             self.generate_yelp_plans(age: age, location: location, user_id: user_id, risk_level_id: risk_level_id)
         else
             businesses.map do |plan|
-                name, dist = plan['name'], plan['distance']
+                name, dist, url = plan['name'], plan['distance'], plan['url']
                 address = plan['location']['display_address'].join(" ")
                 categories = plan['categories'].map { |hash| hash['alias'] }
                 description = "Head over to #{name} on #{address}!"
                 if risk_level_id == self.assign_risk_level(dist)
-                    Plan.create(name: name, location: address, category: categories, \
+                    Plan.create(name: name, location: address, category: categories, url: url\
                     risk_level_id: risk_level_id, distance: dist, user_id: user_id, desc: description)
                 end           
                 

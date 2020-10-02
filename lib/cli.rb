@@ -6,6 +6,7 @@ require "active_record"
 require_all "app/models"
 require_relative "./yelp_api.rb"
 require 'date'
+require 'launchy'
 
 class SpontaneousDecision
     @prompt = TTY::Prompt.new
@@ -88,8 +89,11 @@ class SpontaneousDecision
         if past_plan != "Nevermind, take me back"
             rating = @prompt.ask("On a scale of 1-10, how much did you enjoy this plan?") { |q| q.in("1-10") }
             comment = @prompt.yes?("Any additional comments?")
+            input = comment == "Yes" ? @prompt.ask("Enter additional comments") : ""
             plan = Plan.find_by(desc: past_plan)
-            Review.create(user_id: @user.id, plan_id: plan.id, rating: rating, comment: comment)
+            Review.create(user_id: @user.id, plan_id: 
+            æplan.id, rating: rating, comment: input)
+            self.review_historical_plans
         else
             self.main_menu
         end
@@ -97,7 +101,8 @@ class SpontaneousDecision
 
     def self.disable_reviewed_plans
         @user.selected_plans.map do |x| 
-            Review.find_by(plan_id: Plan.find_by(desc: x).id) ? {name: x, disabled: "-- Already reviewed :)"} : x
+            Review.find_by(plan_id: Plan.find_by(desc: x).id) ? \
+                {name: x, disabled: "(Already reviewed )"} : x
         end
     end
 
@@ -185,9 +190,24 @@ class SpontaneousDecision
             end
         end
         selected_plan = @prompt.select("Choose a plan!", plan_options)
-        #proposed = PLan.inside.sample(2) + Plan
+        sleep 1
+        sleep 2
+        
+         ?  : 
+        puts Rainbow("Returning to main menu...").italic.teal
+        puts "\n"
         Plan.find_by(desc: selected_plan).update(selected?: true, user_id: @user.id)
         self.main_menu
+    end
+
+    def self.visit?(desc)
+        choice = @prompt.yes?("Would you like to check out your selected plan now?")
+        if choice == "Yes"
+            puts Rainbow("Have fun ♡♡♡").italic.teal
+            Launchy.open(Plan.find_by(desc: desc).url)
+        else
+
+        end
     end
 
 end
