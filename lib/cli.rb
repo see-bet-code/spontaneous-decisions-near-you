@@ -71,7 +71,7 @@ class SpontaneousDecision
         when "Find something to do"
             self.level
         when "Review historical plans"
-            self.historical_plans
+            self.review_historical_plans
         when "Delete your account forevahhh D:"
             self.delete_account
         when "Exit into the real world"
@@ -80,9 +80,25 @@ class SpontaneousDecision
         end
     end
     
-    def self.historical_plans
-        puts @user.selected_plans
-        self.main_menu
+    def self.review_historical_plans
+        puts Rainbow("Look at all you've accomplished (´•ω•̥`)").magenta
+        puts "\n"
+        filtered_history = self.disable_reviewed_plans.push("Nevermind, take me back")
+        past_plan = @prompt.select("Which would you like to review?", filtered_history)
+        if past_plan != "Nevermind, take me back"
+            rating = @prompt.ask("On a scale of 1-10, how much did you enjoy this plan?") { |q| q.in("1-10") }
+            comment = @prompt.yes?("Any additional comments?")
+            plan = Plan.find_by(desc: past_plan)
+            Review.create(user_id: @user.id, plan_id: plan.id, rating: rating, comment: comment)
+        else
+            self.main_menu
+        end
+    end
+
+    def self.disable_reviewed_plans
+        @user.selected_plans.map do |x| 
+            Review.find_by(plan_id: Plan.find_by(desc: x).id) ? {name: x, disabled: "-- Already reviewed :)"} : x
+        end
     end
 
     def self.log_out
