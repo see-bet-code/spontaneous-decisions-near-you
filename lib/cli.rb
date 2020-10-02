@@ -221,7 +221,7 @@ class SpontaneousDecision
         when "Text"
             TwilioAPI.send_text(num, body)
         when "Email"
-            self.compose_email(body)
+            #self.compose_email(body)
         when "Open url in default browser"
             Launchy.open(plan.url)
         else
