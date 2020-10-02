@@ -130,7 +130,7 @@ class YelpAPI
                 categories = plan['categories'].map { |hash| hash['alias'] }
                 description = "Head over to #{name} on #{address}!"
                 if risk_level_id == self.assign_risk_level(dist)
-                    Plan.create(name: name, location: address, category: categories, url: url\
+                    Plan.create(name: name, location: address, category: categories, url: url, \
                     risk_level_id: risk_level_id, distance: dist, user_id: user_id, desc: description)
                 end           
                 

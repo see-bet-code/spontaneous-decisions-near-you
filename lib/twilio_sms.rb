@@ -20,9 +20,9 @@ class TwilioSMS
 
     def send_text(body)
         client.messages.create(
-        from: @from,
-        to: @to,
-        body: body
+            from: @from,
+            to: @to,
+            body: body
         )
     end
 
@@ -42,7 +42,7 @@ class TwilioSMS
         twiml.to_s
         end
     end
-    
+
 end
 
 

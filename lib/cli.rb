@@ -190,23 +190,20 @@ class SpontaneousDecision
             end
         end
         selected_plan = @prompt.select("Choose a plan!", plan_options)
-        sleep 1
         sleep 2
-        
-         ?  : 
-        puts Rainbow("Returning to main menu...").italic.teal
-        puts "\n"
-        Plan.find_by(desc: selected_plan).update(selected?: true, user_id: @user.id)
-        self.main_menu
+        self.visit?(desc)
     end
 
     def self.visit?(desc)
         choice = @prompt.yes?("Would you like to check out your selected plan now?")
+        Plan.find_by(desc: desc).update(selected?: true, user_id: @user.id)
         if choice == "Yes"
             puts Rainbow("Have fun ♡♡♡").italic.teal
             Launchy.open(Plan.find_by(desc: desc).url)
         else
-
+            puts Rainbow("Returning to main menu...").italic.teal
+            puts "\n"
+            self.main_menu
         end
     end
 
