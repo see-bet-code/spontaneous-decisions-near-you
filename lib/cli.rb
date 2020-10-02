@@ -122,8 +122,9 @@ class SpontaneousDecision
 
     def self.delete_account
         choice = @prompt.no?("oh no! Are you sure about this")
+        binding.pry
         case choice
-        when "No"
+        when "No", "no", true
             sleep 2
             puts "WHEW, you had us worried there."
             sleep 3
@@ -196,7 +197,7 @@ class SpontaneousDecision
         risk_id = risk_level != "Surprise me ¯\_(๑❛ᴗ❛๑)_/¯" ? RiskLevel.find_by(name: risk_level).id : [0..3].sample
         YelpAPI.generate_yelp_plans(age: @user.age, location: @user.location, user_id: @user.id, risk_level_id: risk_id)
         plan_options = Plan.where(risk_level_id: risk_id, user_id: @user.id).sample(5).map {|p| p.desc }
-        plan_options += Plan.where(risk_level_id: risk_id, user_id: nil).sample(5).map {|p| p.desc }
+        plan_options += Plan.where(risk_level_id: risk_id, user_id: nil).sample(5).map {|p| p.desc } if risk_id == 1
         if plan_options.empty?
             puts "Wow, looks like we didn't find anything matching that risk level."
             sleep 2
