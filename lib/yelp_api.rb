@@ -1,6 +1,7 @@
 require "json"
 require "http"
 require "optparse"
+require "pry"
 
 class YelpAPI
 
@@ -118,10 +119,10 @@ class YelpAPI
 
 
     def self.generate_yelp_plans(age:, location:, user_id:, risk_level_id: )
-
         rand_category = self.user_categories(age).sample
         businesses = self.search(rand_category, location)['businesses']
         if !businesses
+            puts "Trying again..."
             self.generate_yelp_plans(age: age, location: location, user_id: user_id, risk_level_id: risk_level_id)
         else
             businesses.map do |plan|

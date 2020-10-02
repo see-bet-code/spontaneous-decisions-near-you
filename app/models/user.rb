@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
         dob = self.birthdate
         age = now.year - dob.year
         age -= 1 if now < dob + age.years
-      end
+        age
+    end
 end
 
