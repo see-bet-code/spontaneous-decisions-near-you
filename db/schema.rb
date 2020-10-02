@@ -10,17 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_215924) do
+ActiveRecord::Schema.define(version: 2020_10_02_131128) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "risk_level_id"
     t.float "distance"
     t.text "desc"
     t.boolean "selected?"
+    t.string "url"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -40,7 +43,9 @@ ActiveRecord::Schema.define(version: 2020_10_01_215924) do
     t.string "password"
     t.string "location"
     t.string "mobile"
-    t.datetime "birthdate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "birthdate"
   end
 
 end

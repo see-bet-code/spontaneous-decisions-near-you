@@ -16,7 +16,7 @@ class YelpAPI
     DEFAULT_BUSINESS_ID = "flatiron-school-new-york"
     DEFAULT_TERM = "school"
     DEFAULT_LOCATION = "10004"
-    SEARCH_LIMIT = 25
+    SEARCH_LIMIT = 10
     DEFAULT_DISTANCE_LIMIT = 8046.72
 
     DATA_HASH = JSON.parse(File.read('./lib/categories.json'))
@@ -117,24 +117,24 @@ class YelpAPI
     end
 
 
-    def self.generate_yelp_plans(age, location, id)
+    def self.generate_yelp_plans(age:, location:, user_id:, risk_level_id: )
 
         rand_category = self.user_categories(age).sample
-        age = Time.
         businesses = self.search(rand_category, location)['businesses']
         if !businesses
-            self.seed_yelp_plans(age, location)
+            self.generate_yelp_plans(age: age, location: location, user_id: user_id, risk_level_id: risk_level_id)
         else
             businesses.map do |plan|
-                risk = self.assign_risk_level(plan['distance'])
+                name, dist, url = plan['name'], plan['distance'], plan['url']
                 address = plan['location']['display_address'].join(" ")
                 categories = plan['categories'].map { |hash| hash['alias'] }
                 description = "Head over to #{name} on #{address}!"
-                Plan.create(name: plan['name'], address: address, categories: categories, \
-                    risk: risk, distance: plan['distance'], user_id: id)
-                # self.append_to_seed(name: plan['name'], address: address, categories: categories, \
-                #     risk: risk, distance: plan['distance'])
-            end
+                if risk_level_id == self.assign_risk_level(dist)
+                    Plan.create(name: name, location: address, category: categories, url: url, \
+                    risk_level_id: risk_level_id, distance: dist, user_id: user_id, desc: description)
+                end           
+                
+            end.compact
         end
     end
 
@@ -148,56 +148,56 @@ class YelpAPI
 
 
 
-    options = {}
-    OptionParser.new do |opts|
-        opts.banner = "Example usage: ruby sample.rb (search|lookup) [options]"
+    # options = {}
+    # OptionParser.new do |opts|
+    #     opts.banner = "Example usage: ruby sample.rb (search|lookup) [options]"
 
-        opts.on("-tTERM", "--term=TERM", "Search term (for search)") do |term|
-            options[:term] = term
-    end
+    #     opts.on("-tTERM", "--term=TERM", "Search term (for search)") do |term|
+    #         options[:term] = term
+    # end
 
-    opts.on("-lLOCATION", "--location=LOCATION", "Search location (for search)") do |location|
-        options[:location] = location
-    end
+    # opts.on("-lLOCATION", "--location=LOCATION", "Search location (for search)") do |location|
+    #     options[:location] = location
+    # end
 
-    opts.on("-bBUSINESS_ID", "--business-id=BUSINESS_ID", "Business id (for lookup)") do |id|
-        options[:business_id] = id
-    end
+    # opts.on("-bBUSINESS_ID", "--business-id=BUSINESS_ID", "Business id (for lookup)") do |id|
+    #     options[:business_id] = id
+    # end
 
-    opts.on("-h", "--help", "Prints this help") do
-        puts opts
-        exit
-    end
+    # opts.on("-h", "--help", "Prints this help") do
+    #     puts opts
+    #     exit
+    # end
 
-    command = ARGV
-
-
-    case command.first
-        when "search"
-            term = options.fetch(:term, DEFAULT_TERM)
-            location = options.fetch(:location, DEFAULT_LOCATION)
-
-            raise "business_id is not a valid parameter for searching" if options.key?(:business_id)
-
-            response = search(term, location)
-
-            puts "Found #{response["total"]} businesses. Listing #{SEARCH_LIMIT}:"
-            response["businesses"].each {|biz| puts biz["name"]}
-        when "lookup"
-            business_id = options.fetch(:business_id, DEFAULT_BUSINESS_ID)
+    # command = ARGV
 
 
-            raise "term is not a valid parameter for lookup" if options.key?(:term)
-            raise "location is not a valid parameter for lookup" if options.key?(:lookup)
+    # case command.first
+    #     when "search"
+    #         term = options.fetch(:term, DEFAULT_TERM)
+    #         location = options.fetch(:location, DEFAULT_LOCATION)
 
-            response = business(business_id)
+    #         raise "business_id is not a valid parameter for searching" if options.key?(:business_id)
 
-            puts "Found business with id #{business_id}:"
-            puts JSON.pretty_generate(response)
-        else
-            #puts "Please specify a command: search or lookup"
-        end
-    end
+    #         response = search(term, location)
+
+    #         puts "Found #{response["total"]} businesses. Listing #{SEARCH_LIMIT}:"
+    #         response["businesses"].each {|biz| puts biz["name"]}
+    #     when "lookup"
+    #         business_id = options.fetch(:business_id, DEFAULT_BUSINESS_ID)
+
+
+    #         raise "term is not a valid parameter for lookup" if options.key?(:term)
+    #         raise "location is not a valid parameter for lookup" if options.key?(:lookup)
+
+    #         response = business(business_id)
+
+    #         puts "Found business with id #{business_id}:"
+    #         puts JSON.pretty_generate(response)
+    #     else
+    #         #puts "Please specify a command: search or lookup"
+    #     end
+    # end
 
 end
 
