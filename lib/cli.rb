@@ -35,7 +35,7 @@ class SpontaneousDecision
         mobile = @prompt.ask("Phone number?", required: true)
         zip = @prompt.ask("Zip?", validate: /\A\d{5}\Z/)
         puts "Thank you for signing up #{name}!"
-        @user = User.create(name: name, email: email, password: password, location: zip, mobile: mobile, birthdate: DateTime.new(bday[0..3].to_i,bday[4..5].to_i, bday[6..7].to_i))
+        @user = User.create(name: name, email: email, password: password, location: zip, mobile: mobile, birthdate: Date.new(bday[0..3].to_i,bday[4..5].to_i, bday[6..7].to_i))
         sleep (1)
         puts "User created. Quiz next!"
         SpontaneousDecision.main_menu
@@ -50,7 +50,8 @@ class SpontaneousDecision
         else
             system("clear")
             puts "Hey, that doesn't match our records. Try again!"
-            SpontaneousDecision.sign_up
+            sleep 2
+            SpontaneousDecision.welcome
         end
     end
 
@@ -92,6 +93,20 @@ class SpontaneousDecision
     end
 
     def self.delete_account
+        choice = @prompt.no?("oh no! Are you sure about this")
+        case choice
+        when "No"
+            sleep 2
+            puts "WHEW, you had us worried there."
+            sleep 3
+            self.main_menu
+        else
+            sleep 3
+            puts "we'll miss you #{@user.name}! (◕︿◕✿)"
+            User.delete(@user.id)
+            sleep 5
+            self.welcome
+        end
     end
 
     def self.update_info
@@ -136,13 +151,27 @@ class SpontaneousDecision
             menu.choice "high"
             menu.choice "medium"
             menu.choice "low"
+            menu.choice "Surprise me ¯\_(๑❛ᴗ❛๑)_/¯"
         end
-        risk_id = RiskLevel.find_by(name: risk_level).id
+        risk_id = risk_level != "Surprise me ¯\_(๑❛ᴗ❛๑)_/¯" ? RiskLevel.find_by(name: risk_level).id : [0..3].sample
+        YelpAPI.generate_yelp_plans(age: @user.age, location: @user.location, user_id: @user.id, risk_level_id: risk_id)
         plan_options = Plan.where(risk_level_id: risk_id).sample(5).map {|p| p.desc }
+        if plan_options.empty?
+            puts "Wow, looks like we didn't find anything matching that risk level."
+            sleep 2
+            puts "Awkward..."
+            sleep 1
+            selected_plan_backup = @prompt.yes?("Are you sure you can handle this risk level?")
+            if selected_plan_backup || selected_plan_backup == "Yes"
+                YelpAPI.generate_yelp_plans(age: @user.age, location: @user.location, user_id: @user.id, risk_level_id: risk_id)
+            else
+                self.level
+            end
+        end
         selected_plan = @prompt.select("Choose a plan!", plan_options)
         #proposed = PLan.inside.sample(2) + Plan
         Plan.find_by(desc: selected_plan).update(selected?: true, user_id: @user.id)
-        self.main_choice
+        self.main_menu
     end
 
 end

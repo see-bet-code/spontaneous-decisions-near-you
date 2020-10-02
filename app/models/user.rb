@@ -8,5 +8,12 @@ class User < ActiveRecord::Base
     def selected_plans
         self.plans.map { |p| p.desc if p.selected? }.compact
     end
+
+    def age
+        now = Time.now.utc.to_date
+        dob = self.birthdate
+        age = now.year - dob.year
+        age -= 1 if now < dob + age.years
+      end
 end
 

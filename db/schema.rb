@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_215924) do
+ActiveRecord::Schema.define(version: 2020_10_02_015920) do
 
   create_table "plans", force: :cascade do |t|
     t.string "name"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_215924) do
     t.string "password"
     t.string "location"
     t.string "mobile"
-    t.datetime "birthdate"
+    t.date "birthdate"
   end
 
 end
