@@ -141,6 +141,7 @@ class SpontaneousDecision
         update_info = @prompt.select("What wouuld you like to change?") do |menu|
             menu.choice "Update your password"
             menu.choice "Update your zip code"
+            menu.choice "Update your mobile number"
             menu.choice "Return to main menu"
         end
 
@@ -149,6 +150,8 @@ class SpontaneousDecision
             self.password_update
         when "Update your zip code"
             self.zip_update
+        when "Update your mobile number"
+            self.mobile_update
         when "Return to main menu"
             self.main_menu
         else
@@ -158,7 +161,7 @@ class SpontaneousDecision
     def self.password_update
         new_password = @prompt.ask("Please set your new password:")
         @user.update(password: new_password)
-        puts "Your password is updated!"
+        puts "Success! Your password is updated."
         sleep(1)
         system("clear")
         SpontaneousDecision.log_in
@@ -167,7 +170,16 @@ class SpontaneousDecision
     def self.zip_update
         new_zip = @prompt.ask("Please update your zip-code:")
         @user.update(zip: new_zip)
-        puts "Your zip code is updated!"
+        puts "Success! Your zip code is updated."
+        sleep(1)
+        system("clear")
+        SpontaneousDecision.log_in
+    end
+
+    def self.mobile_update
+        new_mobile = @prompt.ask("Please update your mobile number:")
+        @user.update(mobile: new_mobile)
+        puts "Success! Your mobile number is updated."
         sleep(1)
         system("clear")
         SpontaneousDecision.log_in
@@ -209,7 +221,7 @@ class SpontaneousDecision
         if choice == "Yes" || choice
             options = %w(Text)
             options += ["Open url in default browser"] if plan.url
-            next_step = @prompt.select("Risk level?", options)
+            next_step = @prompt.select("Options below:", options)
             self.send_deets(next_step, plan)
             puts Rainbow("Have fun ♡♡♡").italic.teal
             
