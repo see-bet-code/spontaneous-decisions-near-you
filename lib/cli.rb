@@ -8,7 +8,6 @@ require_relative "./yelp_api.rb"
 require_relative "./twilio_sms.rb"
 require 'date'
 require 'launchy'
-require 'mail'
 
 class SpontaneousDecision
     @prompt = TTY::Prompt.new
@@ -77,24 +76,30 @@ class SpontaneousDecision
             self.review_historical_plans
         when "Delete your account forevahhh D:"
             self.delete_account
-        when "Exit into the real world"
-            self.log_out
         else
+            self.log_out
         end
     end
     
     def self.review_historical_plans
-        puts Rainbow("Look at all you've accomplished (´•ω•̥`)").magenta
+        if @user.plans.size > 0
+            puts Rainbow("Look at all you've accomplished (´•ω•̥`)").magenta
+            puts Rainbow("#{@user.name}, you have #{@user.plans.size} plan(s)!").magenta
+        else
+            puts "Looks like you haven't selected any plans yet."
+            comment = @prompt.yes?("Do you want to generate a new one now?")
+            comment == "Yes" || comment ? self.level : self.main_menu
+        end
         puts "\n"
         filtered_history = self.disable_reviewed_plans.push("Nevermind, take me back")
         past_plan = @prompt.select("Which would you like to review?", filtered_history)
         if past_plan != "Nevermind, take me back"
             rating = @prompt.ask("On a scale of 1-10, how much did you enjoy this plan?") { |q| q.in("1-10") }
             comment = @prompt.yes?("Any additional comments?")
-            input = comment == "Yes" ? @prompt.ask("Enter additional comments") : ""
+            input = comment == "Yes" || comment ? @prompt.ask("Enter additional comments") : ""
             plan = Plan.find_by(desc: past_plan)
             Review.create(user_id: @user.id, plan_id: 
-            æplan.id, rating: rating, comment: input)
+            plan.id, rating: rating, comment: input)
             self.review_historical_plans
         else
             self.main_menu
@@ -136,6 +141,7 @@ class SpontaneousDecision
         update_info = @prompt.select("What wouuld you like to change?") do |menu|
             menu.choice "Update your password"
             menu.choice "Update your zip code"
+            menu.choice "Update your mobile number"
             menu.choice "Return to main menu"
         end
 
@@ -144,6 +150,8 @@ class SpontaneousDecision
             self.password_update
         when "Update your zip code"
             self.zip_update
+        when "Update your mobile number"
+            self.mobile_update
         when "Return to main menu"
             self.main_menu
         else
@@ -153,7 +161,7 @@ class SpontaneousDecision
     def self.password_update
         new_password = @prompt.ask("Please set your new password:")
         @user.update(password: new_password)
-        puts "Your password is updated!"
+        puts "Success! Your password is updated."
         sleep(1)
         system("clear")
         SpontaneousDecision.log_in
@@ -162,7 +170,16 @@ class SpontaneousDecision
     def self.zip_update
         new_zip = @prompt.ask("Please update your zip-code:")
         @user.update(zip: new_zip)
-        puts "Your zip code is updated!"
+        puts "Success! Your zip code is updated."
+        sleep(1)
+        system("clear")
+        SpontaneousDecision.log_in
+    end
+
+    def self.mobile_update
+        new_mobile = @prompt.ask("Please update your mobile number:")
+        @user.update(mobile: new_mobile)
+        puts "Success! Your mobile number is updated."
         sleep(1)
         system("clear")
         SpontaneousDecision.log_in
@@ -191,7 +208,8 @@ class SpontaneousDecision
                 self.level
             end
         end
-        selected_plan = @prompt.select("Choose a plan!", plan_options)
+        selected_plan = @prompt.select("Choose a plan!", plan_options.push("Return to main menu"))
+        self.main_menu if selected_plan == "Return to main menu"
         sleep 2
         plan = Plan.find_by(desc: selected_plan)
         plan.update(selected?: true, user_id: @user.id)
@@ -201,9 +219,9 @@ class SpontaneousDecision
     def self.check_out?(plan)
         choice = @prompt.yes?("Would you like to check out your selected plan now?")
         if choice == "Yes" || choice
-            options = %w(Text Email)
+            options = %w(Text)
             options += ["Open url in default browser"] if plan.url
-            next_step = @prompt.select("Risk level?", options)
+            next_step = @prompt.select("Options below:", options)
             self.send_deets(next_step, plan)
             puts Rainbow("Have fun ♡♡♡").italic.teal
             
@@ -220,26 +238,11 @@ class SpontaneousDecision
         case opt
         when "Text"
             TwilioAPI.send_text(num, body)
-        when "Email"
-            #self.compose_email(body)
         when "Open url in default browser"
             Launchy.open(plan.url)
         else
             puts "How did we get here???? I used to know you so well...."
         end
-    end
-
-    def self.compose_email(email_bod)
-        mail = Mail.new do
-            from    'info@yourrubyapp.com'
-            to      @user.email
-            subject 'Any subject you want'
-            body    email_bod
-        end
-
-        #mail.delivery_method :sendmail
-
-        mail.deliver
     end
 
 end
