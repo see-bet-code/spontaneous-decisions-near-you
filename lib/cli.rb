@@ -195,7 +195,8 @@ class SpontaneousDecision
         end
         risk_id = risk_level != "Surprise me ¯\_(๑❛ᴗ❛๑)_/¯" ? RiskLevel.find_by(name: risk_level).id : [0..3].sample
         YelpAPI.generate_yelp_plans(age: @user.age, location: @user.location, user_id: @user.id, risk_level_id: risk_id)
-        plan_options = Plan.where(risk_level_id: risk_id).sample(5).map {|p| p.desc }
+        plan_options = Plan.where(risk_level_id: risk_id, user_id: @user.id).sample(5).map {|p| p.desc }
+        plan_options += Plan.where(risk_level_id: risk_id, user_id: nil).sample(5).map {|p| p.desc }
         if plan_options.empty?
             puts "Wow, looks like we didn't find anything matching that risk level."
             sleep 2
@@ -209,11 +210,14 @@ class SpontaneousDecision
             end
         end
         selected_plan = @prompt.select("Choose a plan!", plan_options.push("Return to main menu"))
-        self.main_menu if selected_plan == "Return to main menu"
-        sleep 2
-        plan = Plan.find_by(desc: selected_plan)
-        plan.update(selected?: true, user_id: @user.id)
-        self.check_out?(plan)
+        if selected_plan == "Return to main menu"
+            sleep 1
+            self.main_menu 
+        else
+            plan = Plan.find_by(desc: selected_plan)
+            plan.update(selected?: true, user_id: @user.id)
+            self.check_out?(plan)
+        end
     end
 
     def self.check_out?(plan)
