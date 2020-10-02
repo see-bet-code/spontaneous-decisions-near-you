@@ -84,7 +84,7 @@ class SpontaneousDecision
     def self.review_historical_plans
         if @user.plans.size > 0
             puts Rainbow("Look at all you've accomplished (´•ω•̥`)").magenta
-            puts Rainbow("#{@user.name}, you have #{@user.plans.size} plan(s)!").magenta
+            puts Rainbow("#{@user.name}, you have #{@user.selected_plans.size} plan(s)!").magenta
         else
             puts "Looks like you haven't selected any plans yet."
             comment = @prompt.yes?("Do you want to generate a new one now?")
@@ -138,7 +138,7 @@ class SpontaneousDecision
     end
 
     def self.update_info
-        update_info = @prompt.select("What wouuld you like to change?") do |menu|
+        update_info = @prompt.select("What would you like to change?") do |menu|
             menu.choice "Update your password"
             menu.choice "Update your zip code"
             menu.choice "Update your mobile number"
@@ -228,7 +228,8 @@ class SpontaneousDecision
             next_step = @prompt.select("Options below:", options)
             self.send_deets(next_step, plan)
             puts Rainbow("Have fun ♡♡♡").italic.teal
-            
+            sleep 2
+            self.main_menu
         else
             puts Rainbow("Returning to main menu...").italic.teal
             puts "\n"
