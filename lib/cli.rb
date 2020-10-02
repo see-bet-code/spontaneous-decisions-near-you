@@ -5,8 +5,10 @@ require "tty-prompt"
 require "active_record"
 require_all "app/models"
 require_relative "./yelp_api.rb"
+require_relative "./twilio_sms.rb"
 require 'date'
 require 'launchy'
+require 'mail'
 
 class SpontaneousDecision
     @prompt = TTY::Prompt.new
@@ -191,20 +193,53 @@ class SpontaneousDecision
         end
         selected_plan = @prompt.select("Choose a plan!", plan_options)
         sleep 2
-        self.visit?(desc)
+        plan = Plan.find_by(desc: selected_plan)
+        plan.update(selected?: true, user_id: @user.id)
+        self.check_out?(plan)
     end
 
-    def self.visit?(desc)
+    def self.check_out?(plan)
         choice = @prompt.yes?("Would you like to check out your selected plan now?")
-        Plan.find_by(desc: desc).update(selected?: true, user_id: @user.id)
-        if choice == "Yes"
+        if choice == "Yes" || choice
+            options = %w(Text Email)
+            options += ["Open url in default browser"] if plan.url
+            next_step = @prompt.select("Risk level?", options)
+            self.send_deets(next_step, plan)
             puts Rainbow("Have fun ♡♡♡").italic.teal
-            Launchy.open(Plan.find_by(desc: desc).url)
+            
         else
             puts Rainbow("Returning to main menu...").italic.teal
             puts "\n"
             self.main_menu
         end
+    end
+
+    def self.send_deets(opt, plan)
+        body = "Please find the deets of your plan below: \n#{plan.desc}"
+        num = User.find(plan.user_id).mobile
+        case opt
+        when "Text"
+            TwilioAPI.send_text(num, body)
+        when "Email"
+            self.compose_email(body)
+        when "Open url in default browser"
+            Launchy.open(plan.url)
+        else
+            puts "How did we get here???? I used to know you so well...."
+        end
+    end
+
+    def self.compose_email(email_bod)
+        mail = Mail.new do
+            from    'info@yourrubyapp.com'
+            to      @user.email
+            subject 'Any subject you want'
+            body    email_bod
+        end
+
+        #mail.delivery_method :sendmail
+
+        mail.deliver
     end
 
 end

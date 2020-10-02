@@ -1,7 +1,7 @@
 require 'twilio-ruby'
 require 'sinatra'
 
-class TwilioSMS 
+class TwilioAPI
     @account_sid = ENV['TWILIO_ACCT_SID']
     @auth_token = ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new(@account_sid, @auth_token)
@@ -14,19 +14,17 @@ class TwilioSMS
     #                                 friendly_name: '+16785925359',
     #                                 phone_number: '+16785925359'
     #                                 )
-    def assign_to(mobile)
-        @to = '+1' + mobile # already verified mobile number
-    end
 
-    def send_text(body)
-        client.messages.create(
-            from: @from,
+    def self.send_text(mobile, body)
+        @to = '+1' + mobile # already verified mobile number
+        @client.messages.create(
+            from: FROM,
             to: @to,
             body: body
         )
     end
 
-    def dynmamic_auto_reply
+    def self.dynmamic_auto_reply
         post '/sms' do
             # transform request body to lowercase
             body = params['Body'].downcase
